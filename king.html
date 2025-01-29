@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Registration App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 80%;
+            margin: 40px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .page {
+            display: none; /* Hide all pages by default */
+        }
+
+        .page:first-child {
+            display: block; /* Show the first page by default */
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #3e8e41;
+        }
+
+        form input, form textarea, form select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        form textarea {
+            resize: vertical;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Community Registration App</h1>
+        <h2>Gindiri Ngok Mangu LGA, Plateau State</h2>
+
+        <!-- Page 1: Personal Information -->
+        <div class="page" id="page1" style="display: block;"> <!-- Ensures this page is visible -->
+            <h3>Personal Information</h3>
+            <form>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name">
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email">
+
+                <button type="button" onclick="nextPage()">Next</button>
+            </form>
+        </div>
+
+        <!-- Page 2: Family Information -->
+        <div class="page" id="page2">
+            <h3>Family Information</h3>
+            <form>
+                <label for="familyMembers">Number of Family Members:</label>
+                <input type="number" id="familyMembers" name="familyMembers" placeholder="Enter number of family members">
+
+                <label for="familyInfo">Other Family Information:</label>
+                <textarea id="familyInfo" name="familyInfo" rows="4" placeholder="Enter additional family information"></textarea>
+
+                <button type="button" onclick="previousPage()">Previous</button>
+                <button type="button" onclick="nextPage()">Next</button>
+            </form>
+        </div>
+
+        <!-- Page 3: Other Information -->
+        <div class="page" id="page3">
+            <h3>Other Information</h3>
+            <form>
+                <label for="village">Village:</label>
+                <select id="village" name="village">
+                    <option value="Gindiri">Gindiri</option>
+                    <option value="Ngok">Ngok</option>
+                </select>
+
+                <label for="otherInfo">Other Relevant Information:</label>
+                <textarea id="otherInfo" name="otherInfo" rows="4" placeholder="Enter any other relevant information"></textarea>
+
+                <button type="button" onclick="previousPage()">Previous</button>
+                <button type="button" onclick="submitForm()">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>&copy; Kingsley's Hub, 2025</footer>
+
+    <script>
+        // Initialize the current page index
+        let currentPage = 1;
+
+        // Function to move to the next page
+        function nextPage() {
+            if (currentPage < 3) {
+                document.getElementById(`page${currentPage}`).style.display = 'none';
+                currentPage++;
+                document.getElementById(`page${currentPage}`).style.display = 'block';
+            }
+        }
+
+        // Function to move to the previous page
+        function previousPage() {
+            if (currentPage > 1) {
+                document.getElementById(`page${currentPage}`).style.display = 'none';
+                currentPage--;
+                document.getElementById(`page${currentPage}`).style.display = 'block';
+            }
+        }
+
+        // Function to handle form submission
+        function submitForm() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const familyMembers = document.getElementById('familyMembers').value;
+            const familyInfo = document.getElementById('familyInfo').value;
+            const village = document.getElementById('village').value;
+            const otherInfo = document.getElementById('otherInfo').value;
+
+            // Form validation
+            if (!name || !email || !familyMembers || !village) {
+                alert('Please fill out all required fields!');
+                return;
+            }
+
+            // Alert submission
+            alert(`Form submitted successfully!
+Name: ${name}
+Email: ${email}
+Family Members: ${familyMembers}
+Family Info: ${familyInfo}
+Village: ${village}
+Other Info: ${otherInfo}`);
+        }
+    </script>
+</body>
+</html>
